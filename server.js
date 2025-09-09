@@ -12,7 +12,10 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-  origin: "http://localhost:5173", // your frontend
+  origin: [
+    "http://localhost:5173",             // local dev
+    "https://auth-frontend-dgtg.vercel.app/" // deployed frontend (Vercel)
+  ],
   credentials: true,
 }));
 
