@@ -15,7 +15,8 @@ app.use(express.json());
 app.use(cors({
   origin: [
     "http://localhost:5173",              // Local dev
-    "https://auth-frontend-dgtg.vercel.app" // Deployed frontend (no trailing slash!)
+    "https://auth-frontend-dgtg.vercel.app",
+    "https://leafy-cascaron-c96c9e.netlify.app" // Deployed frontend (no trailing slash!)
   ],
   credentials: true,
 }));
