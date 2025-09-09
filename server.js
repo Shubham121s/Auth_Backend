@@ -11,17 +11,18 @@ const app = express();
 // Middleware to parse JSON
 app.use(express.json());
 
+// ✅ Correct CORS setup
 app.use(cors({
   origin: [
-    "http://localhost:5173",             // local dev
-    "https://auth-frontend-dgtg.vercel.app/" // deployed frontend (Vercel)
+    "http://localhost:5173",              // Local dev
+    "https://auth-frontend-dgtg.vercel.app" // Deployed frontend (no trailing slash!)
   ],
   credentials: true,
 }));
 
-// Debugging middleware (optional, helps in dev)
+// Debugging middleware
 app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
+  console.log("➡️ Request:", req.method, req.url);
   next();
 });
 
@@ -31,12 +32,12 @@ app.use("/api/students", require("./routes/studentRoutes"));
 
 // Default route
 app.get("/", (req, res) => {
-  res.send("Server Running 🎉!");
+  res.send("✅ Server Running 🎉!");
 });
 
 // Error handling middleware 
 app.use((err, req, res, next) => {
-  console.error(err.stack);
+  console.error("❌ Error:", err.stack);
   res.status(500).json({ message: "Server Error" });
 });
 
